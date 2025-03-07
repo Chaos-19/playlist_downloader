@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # Step 6: Run the Flask app when the container starts
-CMD ["python", "app.py"]
+CMD ["python", "run.py"]

@@ -3,11 +3,15 @@ from celery import Celery
 import os
 import logging
 
+from dotenv import load_dotenv 
+
+load_dotenv()
+
 def make_celery(app):
     celery = Celery(
         app.import_name,
-        backend="redis://redis:6379/0",
-        broker="redis://redis:6379/0"
+        backend=os.getenv('SECRET_KEY').,
+        broker=os.getenv('SECRET_KEY')
     )
     celery.conf.update(app.config)
     return celery

@@ -15,8 +15,8 @@ def get_ytv_metadata():
     if not ytv_url:
         return jsonify({"error": "Missing 'url' parameter"}), 400
 
-    task = fetch_metadata.delay(ytv_url)  # Run Celery task in the background
-    return jsonify({"task_id": task.id, "status": "Processing"}), 202
+    #task = fetch_metadata.delay(ytv_url)  # Run Celery task in the background
+    return jsonify({"task_id": "task.id", "status": "Processing"}), 202
     
     
 

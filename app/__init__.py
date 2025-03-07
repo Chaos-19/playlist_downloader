@@ -8,7 +8,7 @@ def make_celery(app):
         backend=os.environ.get('REDIS_URL'),
         broker=os.environ.get('REDIS_URL')
     )
-    celery.conf.update(app.config)h
+    celery.conf.update(app.config)
     return celery
 
 # Initialize Flask

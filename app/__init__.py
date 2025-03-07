@@ -10,8 +10,8 @@ load_dotenv()
 def make_celery(app):
     celery = Celery(
         app.import_name,
-        backend=os.getenv('SECRET_KEY').,
-        broker=os.getenv('SECRET_KEY')
+        backend=os.getenv('CELERY_RESULT_BACKEND').,
+        broker=os.getenv('CELERY_BROKER_URL')
     )
     celery.conf.update(app.config)
     return celery

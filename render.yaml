@@ -1,0 +1,24 @@
+services:
+  - type: worker
+    name: celery-worker
+    region: ohio
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "celery --app run.celery worker --loglevel info --concurrency 4"
+    autoDeploy: false
+    envVars:
+      - key: CELERY_BROKER_URL
+        value: "redis://your-remote-redis-host:6379/0" # Use externally hosted Redis
+
+  - type: web
+    name: app
+    region: ohio
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn --bind 0.0.0.0:10000 run:app"
+    autoDeploy: false
+    envVars:
+      - key: CELERY_BROKER_URL
+        value: "redis://your-remote-redis-host:6379/0" # Use externally hosted Redis
+      - key: SECRET_KEY
+        value: "your-secret-key"
